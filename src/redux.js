@@ -24,13 +24,17 @@ const todoSlice = createSlice({
     },
     deleteTask: (state, action) => {
         // {type: "todo/deleteTask", payload: 20}
-        state = state.find(t => t.id !== action.payload );
+        state = state.filter(t => t.id !== action.payload );
+        return state;
     },
   }
 });
+
+export const { addTask, deleteTask, toggleTask } = todoSlice.actions;
 
 export const store = configureStore({
     reducer: {
         todo: todoSlice.reducer
     }
-})
+});
+
